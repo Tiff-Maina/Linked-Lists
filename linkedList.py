@@ -111,23 +111,41 @@ if __name__ == "__main__":
     # Create an instance of the linked list
     ll = SinglyLinkedList()
 
-    # Insert some elements
+    print("\n=== Inserting Elements ===")
     ll.insert_at_end(10)
     ll.insert_at_end(20)
     ll.insert_at_start(5)
-    ll.insert_at_index(1, 15)
+    ll.insert_at_index(1, 15)  # List: 5 -> 15 -> 10 -> 20
 
-    # Display the current list
-    print("Current list:")
-    ll.display()  # Expected output: 5 -> 15 -> 10 -> 20 -> None
-
-    # Search for a value and print the result
-    index = ll.search(10)
-    print("Index of 10 is:", index)
-
-    # Delete an element at index 1
-    ll.delete_at_index(1)
-
-    # Display the list after deletion
-    print("List after deleting at index 1:")
+    print("After insertions:")
     ll.display()
+
+    print("\n=== Searching Elements ===")
+    print("Index of 10:", ll.search(10))   # Expected: 2
+    print("Index of 5:", ll.search(5))     # Expected: 0
+    print("Index of 99:", ll.search(99))   # Expected: -1 (not found)
+
+    print("\n=== Deleting Elements ===")
+    ll.delete_at_index(1)  # Remove 15 → List: 5 -> 10 -> 20
+    print("After deleting at index 1:")
+    ll.display()
+
+    ll.delete_at_index(0)  # Remove 5 → List: 10 -> 20
+    print("After deleting head:")
+    ll.display()
+
+    ll.delete_at_index(5)  # Invalid index
+    ll.delete_at_index(-1) # Invalid index
+
+    print("\n=== Final List ===")
+    ll.display()
+
+    print("\n=== Testing Insertion at Out-of-Bounds Index ===")
+    ll.insert_at_index(10, 50)  # Should print "Index out of bounds"
+
+    print("\n=== Testing on Empty List ===")
+    # Clear list manually
+    ll = SinglyLinkedList()
+    ll.display()                 # Should say "List is empty"
+    ll.delete_at_index(0)       # Should print error
+    print("Search in empty list:", ll.search(1))  # Should return -1
